@@ -1,0 +1,257 @@
+# Gameboard Input
+game_board = ["_", "_", "_", "_", "_", "_", "_", "_", "_"]
+
+# Variable Setup
+top_row = []
+middle_row = []
+bottom_row = []
+
+collumn_1 = []
+collumn_2 = []
+collumn_3 = []
+
+left_right_diagonal = []
+right_left_diagonal = []
+
+x_wins = False
+o_wins = False
+empty_spaces = False
+game_over = False
+x_move = True
+
+# Printing out the gameboard
+def printout(game):
+    print("---------")
+    print("| " + game[0] + " " + game[1] + " " + game[2] + " |")
+    print("| " + game[3] + " " + game[4] + " " + game[5] + " |")
+    print("| " + game[6] + " " + game[7] + " " + game[8] + " |")
+    print("---------")
+
+# Making collumns and rows and diagonals
+def collumns(game):
+    global top_row
+    global middle_row
+    global bottom_row
+    global collumn_1
+    global collumn_2
+    global collumn_3
+    global left_right_diagonal
+    global right_left_diagonal
+
+    for i in range(9):
+        if i == 0 or i == 1 or i == 2:
+            top_row.append(game[i])
+
+        if i == 3 or i == 4 or i == 5:
+            middle_row.append(game[i])
+
+        if i == 6 or i == 7 or i == 8:
+            bottom_row.append(game[i])
+
+        if i == 0 or i == 3 or i == 6:
+            collumn_1.append(game[i])
+
+        if i == 1 or i == 4 or i == 7:
+            collumn_2.append(game[i])
+
+        if i == 2 or i == 5 or i == 8:
+            collumn_3.append(game[i])
+
+        if i == 0 or i == 4 or i == 8:
+            left_right_diagonal.append(game[i])
+
+        if i == 2 or i == 4 or i == 6:
+            right_left_diagonal.append(game[i])
+
+# User's Move
+def users_move():
+    global game_board
+    global x_move
+    while True:
+        users_move = input()
+
+        if users_move == "1 1":
+            if game_board[0] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[0] = "X"
+                if x_move == False:
+                    game_board[0] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "1 2":
+            if game_board[1] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[1] = "X"
+                if x_move == False:
+                    game_board[1] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "1 3":
+            if game_board[2] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[2] = "X"
+                if x_move == False:
+                    game_board[2] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "2 1":
+            if game_board[3] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[3] = "X"
+                if x_move == False:
+                    game_board[3] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "2 2":
+            if game_board[4] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[4] = "X"
+                if x_move == False:
+                    game_board[4] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "2 3":
+            if game_board[5] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[5] = "X"
+                if x_move == False:
+                    game_board[5] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "3 1":
+            if game_board[6] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[6] = "X"
+                if x_move == False:
+                    game_board[6] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "3 2":
+            if game_board[7] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[7] = "X"
+                if x_move == False:
+                    game_board[7] = "O"
+                x_move = not(x_move)
+                break
+
+        if users_move == "3 3":
+            if game_board[8] != "_":
+                print("This cell is occupied! Choose another one!")
+            else:
+                if x_move == True:
+                    game_board[8] = "X"
+                if x_move == False:
+                    game_board[8] = "O"
+                x_move = not(x_move)
+                break
+
+        user_move_splitted = users_move.split()
+        if int(user_move_splitted[0]) > 3 or int(user_move_splitted[0]) < 1:
+            print("Coordinates should be from 1 to 3!")
+
+        if int(user_move_splitted[1]) > 3 or int(user_move_splitted[1]) < 1:
+            print("Coordinates should be from 1 to 3!")
+
+        else:
+            print("You should enter numbers!")
+
+
+
+
+
+
+
+# Deciding who wins
+def who_wins():
+    global game_board
+    global top_row
+    global middle_row
+    global bottom_row
+    global collumn_1
+    global collumn_2
+    global collumn_3
+    global left_right_diagonal
+    global right_left_diagonal
+    global game_over
+    global empty_spaces
+    global x_wins
+    global o_wins
+
+    collumns(game_board)
+
+    if top_row == ["X", "X", "X"] or middle_row == ["X", "X", "X"] or bottom_row == ["X", "X", "X"]:
+        x_wins = True
+
+    if collumn_1 == ["X", "X", "X"] or collumn_2 == ["X", "X", "X"] or collumn_3 == ["X", "X", "X"]:
+        x_wins = True
+
+    if left_right_diagonal == ["X", "X", "X"] or right_left_diagonal == ["X", "X", "X"]:
+        x_wins = True
+
+    if top_row == ["O", "O", "O"] or middle_row == ["O", "O", "O"] or bottom_row == ["O", "O", "O"]:
+        o_wins = True
+
+    if collumn_1 == ["O", "O", "O"] or collumn_2 == ["O", "O", "O"] or collumn_3 == ["O", "O", "O"]:
+        o_wins = True
+
+    if left_right_diagonal == ["O", "O", "O"] or right_left_diagonal == ["O", "O", "O"]:
+        o_wins = True
+
+    for i in game_board:
+        if i == "_":
+            empty_spaces = True
+
+    if x_wins:
+        print("X wins")
+        game_over = True
+
+    if o_wins:
+        print("O wins")
+        game_over = True
+
+    if empty_spaces == False and x_wins == False and o_wins == False:
+        print("Draw")
+        game_over = True
+
+    o_wins = False
+    x_wins = False
+    empty_spaces = False
+    top_row = []
+    middle_row = []
+    bottom_row = []
+    collumn_1 = []
+    collumn_2 = []
+    collumn_3 = []
+    left_right_diagonal = []
+    right_left_diagonal = []
+
+printout(game_board)
+
+while game_over == False:
+    users_move()
+    printout(game_board)
+    who_wins()
