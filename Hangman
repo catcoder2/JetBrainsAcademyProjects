@@ -1,0 +1,94 @@
+import random
+
+word_options = ["python", "java", "kotlin", "javascript"]
+correct_word = random.choice(word_options)
+blanked_out_word = "-" * (len(correct_word))
+attempts = 8
+good_guess = False
+guessing_word_list = list(blanked_out_word)
+already_guessed_letters = []
+
+
+print("H A N G M A N")
+
+while True:
+
+    while True:
+        menu_input = input('Type "play" to play the game, "exit" to quit: ')
+        if menu_input == "play":
+            break
+        if menu_input == "exit":
+            break
+        menu_input = ""
+
+    if menu_input == "exit":
+        break
+
+
+    print()
+
+    while True:
+
+
+        print(blanked_out_word)
+
+        if blanked_out_word == correct_word:
+            print("You guessed the word!")
+            print("You survived!")
+            break
+
+        guess = input("Input a letter: ")
+
+        if len(guess) > 1:
+            print("You should input a single letter")
+            print()
+            continue
+
+        if guess in already_guessed_letters:
+            print("You've already guessed this letter")
+            print()
+            continue
+
+        if guess.islower() == False:
+            print("Please enter a lowercase English letter")
+            print()
+            continue
+
+        for i in range(15):
+            if len(correct_word) - 1 >= i:
+                if guess == correct_word[i]:
+                    guessing_word_list[i] = guess
+                    good_guess = True
+
+        already_guessed_letters.append(guess)
+
+        blanked_out_word = ""
+        for i in guessing_word_list:
+            blanked_out_word = blanked_out_word + i
+
+
+        if good_guess == False:
+            attempts -= 1
+            print("That letter doesn't appear in the word")
+
+        if blanked_out_word != correct_word and attempts == 0:
+            print("You lost!")
+            break
+
+        good_guess = False
+        print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
